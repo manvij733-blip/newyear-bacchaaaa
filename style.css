@@ -1,0 +1,134 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(120deg, #cfe9ff, #ffe6f2);
+  overflow: hidden;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Layer system */
+#overlay, #newyear, #cards, #letter, #final {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+#overlay { z-index: 5; }
+#newyear { z-index: 4; }
+#cards { z-index: 3; }
+#letter { z-index: 3; }
+#final { z-index: 6; }
+
+button {
+  padding: 12px 28px;
+  border: none;
+  border-radius: 30px;
+  background: pink;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 25px;
+  position: relative;
+  z-index: 10;
+}
+
+.sparkle {
+  animation: pop 1.2s ease;
+}
+
+.big {
+  font-size: 60px;
+  animation: fade 2s ease;
+}
+
+.card-container {
+  display: flex;
+  gap: 25px;
+}
+
+.card {
+  width: 180px;
+  height: 220px;
+  perspective: 1000px;
+  cursor: pointer;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.card div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  padding: 15px;
+}
+
+.front {
+  background: #cfe9ff;
+}
+
+.back {
+  background: pink;
+  transform: rotateY(180deg);
+}
+
+.card.flipped {
+  transform: rotateY(180deg);
+}
+
+#letter {
+  padding: 40px;
+}
+
+#text {
+  font-size: 18px;
+  max-width: 800px;
+}
+
+/* Fireworks */
+#fireworks {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  display: none;
+  pointer-events: none;
+}
+
+/* Final text sparkle */
+#final h1 {
+  max-width: 90%;
+  font-size: clamp(22px, 4vw, 36px);
+  line-height: 1.4;
+  animation: sparkleText 2s ease infinite alternate;
+}
+
+@keyframes pop {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}
+
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes sparkleText {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px pink;
+  }
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 40px #ffb6c1;
+  }
+}
